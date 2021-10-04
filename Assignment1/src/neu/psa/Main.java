@@ -1,35 +1,33 @@
 package neu.psa;
 
-import sun.font.DelegatingShape;
-
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Main {
 
     public static void main(String[] args) {
 
     }
+
     //Q1
-    public static int sumOfUniques(int[] nums){
+    public static int sumOfUniques(int[] nums) {
         HashMap<Integer, Integer> seen = new HashMap<>();
         int count = 0;
-        for (int i = 0; i < nums.length; i++){
-            if(seen.containsKey(nums[i])){
-                seen.put(nums[i], seen.getOrDefault(nums[i], 0) +1);
-            }
-            else{
-                seen.put(nums[i],1);
+        for (int i = 0; i < nums.length; i++) {
+            if (seen.containsKey(nums[i])) {
+                seen.put(nums[i], seen.getOrDefault(nums[i], 0) + 1);
+            } else {
+                seen.put(nums[i], 1);
             }
         }
 
-        for(int key : seen.keySet()){
-            if (seen.get(key) == 1){
-                count+= key;
+        for (int key : seen.keySet()) {
+            if (seen.get(key) == 1) {
+                count += key;
             }
         }
         return count;
     }
+
     //Q2
     public static int[] sortedSquares(int[] nums) {
         int[] result = new int[nums.length];
@@ -43,8 +41,7 @@ public class Main {
             if (low_value > high_value) {
                 square = low_value;
                 low++;
-            }
-            else {
+            } else {
                 square = high_value;
                 high--;
             }
@@ -53,8 +50,9 @@ public class Main {
         }
         return result;
     }
+
     //Q3
-    public static int uniqueElement(int[] nums){
+    public static int uniqueElement(int[] nums) {
         HashMap<Integer, Integer> seen = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (seen.containsKey(nums[i])) {
@@ -63,8 +61,8 @@ public class Main {
                 seen.put(nums[i], 1);
             }
         }
-        for(int key : seen.keySet()){
-            if(seen.get(key) == 1 ){
+        for (int key : seen.keySet()) {
+            if (seen.get(key) == 1) {
                 return key;
             }
         }
@@ -74,21 +72,20 @@ public class Main {
     //Q4
     public static boolean canConstruct(String ransomNote, String magazine) {
         HashMap<Character, Integer> ransom = new HashMap<>();
-        for(int i = 0; i < ransomNote.length(); i++){
-            if(ransom.containsKey(ransomNote.charAt(i))){
-                ransom.put(ransomNote.charAt(i), ransom.getOrDefault(ransomNote.charAt(i), 0)+1);
-            }
-            else{
+        for (int i = 0; i < ransomNote.length(); i++) {
+            if (ransom.containsKey(ransomNote.charAt(i))) {
+                ransom.put(ransomNote.charAt(i), ransom.getOrDefault(ransomNote.charAt(i), 0) + 1);
+            } else {
                 ransom.put(ransomNote.charAt(i), 1);
             }
         }
-        for(int j = 0; j < magazine.length(); j++){
-            if(ransom.containsKey(magazine.charAt(j))){
-                ransom.put(magazine.charAt(j), ransom.getOrDefault(magazine.charAt(j), 0)-1);
+        for (int j = 0; j < magazine.length(); j++) {
+            if (ransom.containsKey(magazine.charAt(j))) {
+                ransom.put(magazine.charAt(j), ransom.getOrDefault(magazine.charAt(j), 0) - 1);
             }
         }
-        for(Character key : ransom.keySet()){
-            if(ransom.get(key) > 0){
+        for (Character key : ransom.keySet()) {
+            if (ransom.get(key) > 0) {
                 return false;
             }
         }
@@ -96,28 +93,27 @@ public class Main {
     }
 
     //Q5
-    public static boolean alternativeCharInt(String value){
+    public static boolean alternativeCharInt(String value) {
         boolean flag = isChar(value.charAt(0));
-        if(flag == true){
-            for (int i = 0; i < value.length(); i+=2){
-                if(isChar(value.charAt(i)) == false){
+        if (flag == true) {
+            for (int i = 0; i < value.length(); i += 2) {
+                if (isChar(value.charAt(i)) == false) {
                     return false;
                 }
             }
-            for (int i = 1; i < value.length(); i+=2){
-                if(isChar(value.charAt(i)) == true){
+            for (int i = 1; i < value.length(); i += 2) {
+                if (isChar(value.charAt(i)) == true) {
                     return false;
                 }
             }
-        }
-        else {
-            for (int i = 0; i < value.length(); i+=2){
-                if(isChar(value.charAt(i)) == true){
+        } else {
+            for (int i = 0; i < value.length(); i += 2) {
+                if (isChar(value.charAt(i)) == true) {
                     return false;
                 }
             }
-            for (int i = 1; i < value.length(); i+=2){
-                if(isChar(value.charAt(i)) == false){
+            for (int i = 1; i < value.length(); i += 2) {
+                if (isChar(value.charAt(i)) == false) {
                     return false;
                 }
             }
@@ -126,11 +122,9 @@ public class Main {
     }
 
     public static boolean isChar(char i) {
-        if ((i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'))
-        {
+        if ((i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z')) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
