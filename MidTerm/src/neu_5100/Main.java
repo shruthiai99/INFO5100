@@ -92,9 +92,6 @@ public class Main {
                 sb = new StringBuilder();
                 set.clear();
             }
-
-
-
         }
         return result;
     }
