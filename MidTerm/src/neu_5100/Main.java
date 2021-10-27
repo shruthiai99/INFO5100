@@ -72,12 +72,10 @@ public class Main {
 //Question 4
     public static String nonRepeated(String string){
         StringBuilder sb = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
 
         Set<Character> set = new HashSet<>();
         char[] chars = string.toCharArray();
         int i = 0;
-        List<String> list = new ArrayList<>();
         String result = "";
         while(i < chars.length){
             if(!set.contains(chars[i])){
