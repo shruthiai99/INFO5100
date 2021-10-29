@@ -1,9 +1,7 @@
 package neu_5100;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.sql.Array;
+import java.util.*;
 
 public class Main {
 
@@ -14,7 +12,10 @@ public class Main {
         int[] nums = {1, 2, 3, 4, 5};
         System.out.println(sumOfRepeated(nums));
 
-        System.out.println(nonRepeatingSubString("abcabcbb"));
+        System.out.println(nonRepeated("abacd"));
+        fibonacci(10);
+        factorial(5);
+        printStar(5);
     }
 
     //Question 3
@@ -41,35 +42,90 @@ public class Main {
         return result;
     }
 
-    public static String nonRepeatingSubString(String string) {
-        Set<Character> charSet = new HashSet<>();
+    //    public static String nonRepeatingSubString(String string) {
+//        Set<Character> charSet = new HashSet<>();
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("");
+//        for (char letter : string.toCharArray()) {
+//            charSet.add(letter);
+//        }
+//
+//        for (int i = 0; i < string.length() - charSet.size() + 1; i++) {
+//            String subString = string.substring(i, i + charSet.size());
+//            Set<Character> subSet = new HashSet<>();
+//            for (char letter : subString.toCharArray()) {
+//                subSet.add(letter);
+//            }
+//            if (subSet.size() > sb.length()) {
+//                for (char letter : subSet) {
+//                    sb.append(letter);
+//                }
+//            }
+//
+//            if (subSet.size() == charSet.size()) {
+//                for (char letter : subSet) {
+//                    sb.append(letter);
+//                    return sb.toString();
+//                }
+//            }
+//        }
+//
+//        return sb.toString();
+//    }
+//Question 4
+    public static String nonRepeated(String string){
         StringBuilder sb = new StringBuilder();
-        sb.append("");
-        for (char letter : string.toCharArray()) {
-            charSet.add(letter);
-        }
 
-        for (int i = 0; i < string.length() - charSet.size() + 1; i++) {
-            String subString = string.substring(i, i + charSet.size());
-            Set<Character> subSet = new HashSet<>();
-            for (char letter : subString.toCharArray()) {
-                subSet.add(letter);
+        Set<Character> set = new HashSet<>();
+        char[] chars = string.toCharArray();
+        int i = 0;
+        String result = "";
+        while(i < chars.length){
+            if(!set.contains(chars[i])){
+                set.add(chars[i]);
+                sb.append(chars[i]);
+                i++;
             }
-            if (subSet.size() > sb.length()) {
-                for (char letter : subSet) {
-                    sb.append(letter);
+            else{
+                if(sb.length() > result.length()){
+                    result = sb.toString();
                 }
-            }
-
-            if (subSet.size() == charSet.size()) {
-                System.out.println("here");
-                for (char letter : subSet) {
-                    sb.append(letter);
-                    return sb.toString();
-                }
+                sb = new StringBuilder();
+                set.clear();
             }
         }
+        return result;
+    }
 
-        return sb.toString();
+    public static void fibonacci(int n){
+        int[] result = new int[n];
+        result[0] = 1;
+        if(n >= 2){
+            result[1] = 1;
+        }
+        for(int i = 2; i<n; i++){
+            result[i] = result[i-1] + result[i - 2];
+        }
+        for(int num : result){
+            System.out.print(num +",");
+        }
+        System.out.println();
+    }
+
+    public static void factorial(int n){
+        int result = 1;
+        for(int i = n; i >= 1; i--){
+            result *= i;
+        }
+        System.out.println(result);
+    }
+
+    public static void printStar(int n){
+        for(int i = 0; i<n; i++){
+            for(int j = 0; j <= i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 }
