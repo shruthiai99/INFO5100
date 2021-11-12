@@ -8,16 +8,48 @@ public class Main {
 
         Thread t1 = new Thread(new Runnable(){
             public void run(){
-                LinkedList list = new LinkedList();
-                list.addAtPosition(0,1);
-                list.addAtPosition(1,2);
-                list.addAtPosition(2,3);
-                list.addAtPosition(3,4);
-                list.addAtPosition(4,5);
+                try {
+                    list.addAtPosition(0,1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(0,1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(1,2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(2,3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(3,4);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(4,5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 list.printLinkedList();
-                list.removeAtPosition(4);
+                try {
+                    list.removeAtPosition(4);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 list.printLinkedList();
-                list.removeAtPosition(4);
+                try {
+                    list.removeAtPosition(4);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println(list.size());
                 System.out.println(list.getFirst());
                 System.out.println(list.getLast());
@@ -27,21 +59,54 @@ public class Main {
 
         Thread t2 = new Thread(new Runnable(){
             public void run(){
-                LinkedList list1 = new LinkedList();
-                list1.addAtPosition(0,11);
-                list1.addAtPosition(1,12);
-                list1.addAtPosition(2,13);
-                list1.addAtPosition(3,14);
-                list1.addAtPosition(4,15);
-                list1.printLinkedList();
-                list1.removeAtPosition(4);
-                list1.printLinkedList();
-                list1.removeAtPosition(4);
-                System.out.println(list1.size());
-                System.out.println(list1.getFirst());
-                System.out.println(list1.getLast());
+                try {
+                    list.addAtPosition(0, 2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(0,11);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(1,12);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(2,13);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(3,14);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.addAtPosition(4,15);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    list.removeAtPosition(4);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    list.removeAtPosition(4);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                list.printLinkedList();
+                System.out.println(list.size());
+                System.out.println(list.getFirst());
+                System.out.println(list.getLast());
             }
         });
         t2.start();
+        list.printLinkedList();
     }
 }

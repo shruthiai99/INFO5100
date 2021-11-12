@@ -8,7 +8,7 @@ public class LinkedList {
         return this.size;
     }
     //Considering 0th index
-    public synchronized void addAtPosition(int index, int element){
+    public synchronized void addAtPosition(int index, int element) throws InterruptedException {
         if(index > size){
             System.out.println("Cannot inset at this index");
             return;
@@ -38,10 +38,11 @@ public class LinkedList {
            size++;
            return;
        }
+       Thread.sleep(1000);
     }
 
     //Considering 0th index
-    public synchronized void removeAtPosition(int index){
+    public synchronized void removeAtPosition(int index) throws InterruptedException {
         if(index > size - 1){
             System.out.println("Cannot remove at this index");
             return;
@@ -62,13 +63,14 @@ public class LinkedList {
             size--;
             return;
         }
+        Thread.sleep(1000);
     }
 
     public  synchronized int getFirst(){
         return head.data;
     }
 
-    public synchronized int getLast(){
+    public synchronized int getLast() {
         if(head == null){
             return -1;
         }
@@ -77,6 +79,7 @@ public class LinkedList {
             ptr = ptr.next;
         }
         return ptr.data;
+
     }
 
     public synchronized void printLinkedList(){
