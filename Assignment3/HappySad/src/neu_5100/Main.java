@@ -10,6 +10,7 @@ public class Main {
         psychiatrist.examine(happy);
         psychiatrist.observe(happy);
         System.out.println(happy);
+        System.out.println();
 
         psychiatrist.examine(sad);
         psychiatrist.observe(sad);
