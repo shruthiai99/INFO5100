@@ -130,10 +130,11 @@ public class Main {
             char[] chars = str.toCharArray();
             Arrays.sort(chars);
             String word = String.valueOf(chars);
-            if(map.containsKey(word)){
-                map.get(word).add(str);
+            if (!map.containsKey(word)) {
+                map.put(word, new ArrayList<>());
             }
-            map.put(word, new ArrayList<>());
+            map.get(word).add(str);
+
         }
         for(ArrayList<String> list : map.values()){
             result.add(list);
