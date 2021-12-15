@@ -1,6 +1,8 @@
 package neu_psa;
 
 import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,7 +28,7 @@ public class Main {
         System.out.println(count(nums, 1));
 
         //Q4
-        //Creating movie class, genre class and netflix class
+        //Add List of movies based on the classes created above.
         Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
         Movies movie1 = new Movies("Titanic", date1, "Mark Anthony");
         movie1.addActors("Kate");
@@ -71,7 +73,8 @@ public class Main {
         netflix.addGenre(genre1);
         netflix.addGenre(genre2);
 
-        //To add classic to movies before 2000
+        //For all movies released before 2000, add the string "(Classic)" to the title of the movie using
+        //flatMap.
         Date dateCheck = new GregorianCalendar(2000, Calendar.JANUARY, 01).getTime();
         List<String> movies =
                 netflix.genres.stream().
@@ -87,7 +90,8 @@ public class Main {
                 sorted((m1, m2) -> m2.getReleaseDate().compareTo(m2.getReleaseDate())).
                 limit(3).map(m -> m.getTitle()).collect(Collectors.toList());
 
-        //Chain predicate
+        //Create a predicate for release date before 2000 and a predicate for release date before 1990
+        //and then Chain the predicates for finding movies between 1990 and 2000.
         Date predicateDate1 = new GregorianCalendar(1990, Calendar.JANUARY, 01).getTime();
         Date predicateDate2 = new GregorianCalendar(2000, Calendar.JANUARY, 01).getTime();
         Predicate<Date> before1990 = (date -> date.before(predicateDate1));
@@ -103,8 +107,19 @@ public class Main {
             }
         }
 
-        //Sorting using comparator
+        //Sorting on one of the feature(Ex: Released year or title) which will use comparator.
         Collections.sort(movieList, (m1,m2) -> m1.getTitle().compareTo(m2.getTitle()));
+
+        //Write a method which that will add release year in the title of the movie and return the title and
+        //then use this method for all the movies.
+        BiFunction<Date, String, String> merge = (date, str) ->{
+            String merged = date.toString() + str;
+            return merged;
+        };
+
+        for(Movies movie : movieList){
+            merge.apply(movie.getReleaseDate(), movie.getTitle());
+        }
     }
 
     //Q2
